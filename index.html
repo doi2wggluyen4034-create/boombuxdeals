@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RobuxDeals - Claim Your Reward</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Khmer OS Battambang", sans-serif;
+    }
+
+    body {
+      background-color: #070a08;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+      /* Grid Background */
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Ambient Green Glow */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: 20%;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(0, 230, 91, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 790px;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Top Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0, 230, 91, 0.15);
+      border: 2px solid #00e65b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 230, 91, 0.35);
+      color: #00e65b;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .brand-text span {
+      color: #00e65b;
+    }
+
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background-color: rgba(16, 26, 20, 0.85);
+      border: 1px solid #1c3b27;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #00e65b;
+    }
+
+    /* Main Card */
+    .main-card {
+      background-color: #111513;
+      border: 1px solid #222925;
+      border-radius: 18px;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      min-height: 390px;
+    }
+
+    /* Left Panel (Striped) */
+    .left-panel {
+      width: 32%;
+      background: repeating-linear-gradient(
+        -45deg,
+        #0c100e,
+        #0c100e 14px,
+        #0f1411 14px,
+        #0f1411 28px
+      );
+      border-right: 1px solid #1e2521;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .visual-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Rings around left icon */
+    .glow-circle-outer {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 230, 91, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(0, 230, 91, 0.08) 0%, transparent 70%);
+    }
+
+    .glow-circle-inner {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 230, 91, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Step 1 R Emblem */
+    .r-emblem {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background-color: #00e65b;
+      color: #070a08;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 900;
+      box-shadow: 0 0 30px rgba(0, 230, 91, 0.45);
+      position: relative;
+    }
+
+    .r-emblem::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #070a08;
+    }
+
+    /* Step 2 Progress Ring */
+    .progress-ring-box {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-ring-svg {
+      transform: rotate(-90deg);
+      width: 120px;
+      height: 120px;
+    }
+
+    .progress-ring-bg {
+      fill: none;
+      stroke: #1b241e;
+      stroke-width: 7;
+    }
+
+    .progress-ring-fill {
+      fill: none;
+      stroke: #00e65b;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-dasharray: 314;
+      stroke-dashoffset: 314;
+      transition: stroke-dashoffset 0.15s linear;
+    }
+
+    .progress-percent-text {
+      position: absolute;
+      font-size: 22px;
+      font-weight: 800;
+      color: #00e65b;
+    }
+
+    /* Step 3 Checkmark Circle */
+    .check-emblem-box {
+      display: none;
+    }
+
+    .check-circle {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      border: 2px solid #00e65b;
+      background: rgba(0, 230, 91, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00e65b;
+      box-shadow: 0 0 25px rgba(0, 230, 91, 0.2);
+    }
+
+    /* Step Footer Progress */
+    .step-progress-area {
+      width: 100%;
+      max-width: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-label {
+      font-size: 13px;
+      color: #9ca3af;
+      font-weight: 600;
+    }
+
+    .step-label span {
+      color: #00e65b;
+      font-weight: 800;
+    }
+
+    .step-bar-bg {
+      width: 100%;
+      height: 5px;
+      background-color: #222925;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .step-bar-fill {
+      height: 100%;
+      width: 33.33%;
+      background-color: #00e65b;
+      border-radius: 10px;
+      transition: width 0.35s ease;
+    }
+
+    /* Right Panel */
+    .right-panel {
+      width: 68%;
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .step-view {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .step-view.active {
+      display: flex;
+    }
+
+    /* Step 1 Styles */
+    .reward-pill {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(0, 230, 91, 0.1);
+      border: 1px solid rgba(0, 230, 91, 0.35);
+      color: #00e65b;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    .title-main {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .title-main span {
+      color: #00e65b;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: #8c9690;
+      line-height: 1.5;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      background-color: #0c0f0d;
+      border: 1px solid #242c27;
+      border-radius: 10px;
+      padding: 14px 16px;
+      gap: 12px;
+      margin-top: 4px;
+      transition: border-color 0.2s;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #00e65b;
+    }
+
+    .input-wrapper svg {
+      width: 20px;
+      height: 20px;
+      stroke: #7c8781;
+      flex-shrink: 0;
+    }
+
+    .username-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    .username-input::placeholder {
+      color: #6d7771;
+    }
+
+    .connect-btn {
+      background-color: #00dc5a;
+      color: #060907;
+      border: none;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+      transition: background-color 0.15s, transform 0.1s;
+    }
+
+    .connect-btn:hover {
+      background-color: #00f062;
+    }
+
+    .connect-btn:active {
+      transform: scale(0.99);
+    }
+
+    /* Step 2 Styles */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #525c56;
+      transition: color 0.25s;
+    }
+
+    .check-item.done {
+      color: #ffffff;
+    }
+
+    .check-icon-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid #2b352f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s;
+      flex-shrink: 0;
+    }
+
+    .check-item.done .check-icon-circle {
+      background-color: #00e65b;
+      border-color: #00e65b;
+      color: #070a08;
+    }
+
+    /* Step 3 Styles */
+    .step3-title {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .step3-desc {
+      font-size: 14.5px;
+      color: #9ca3af;
+      line-height: 1.55;
+    }
+
+    .step3-desc .highlight-user {
+      color: #00e65b;
+      font-weight: 700;
+    }
+
+    .step3-desc strong {
+      color: #ffffff;
+    }
+
+    .reward-banner {
+      background-color: #090c0a;
+      border: 1px solid #1c241f;
+      border-left: 4px solid #00e65b;
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .reward-banner-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #8c9690;
+      font-weight: 700;
+    }
+
+    .reward-banner-amount {
+      font-size: 26px;
+      font-weight: 900;
+      color: #00e65b;
+    }
+
+    .reward-banner-amount span {
+      color: #ffffff;
+    }
+
+    .verify-note {
+      font-size: 13.5px;
+      color: #8c9690;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .select-instruction {
+      color: #00e65b;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* ====================================================
+       LOCKER (LEFT) + ARROWS POINTING TO OFFERS (RIGHT)
+       ==================================================== */
+    .locker-row-layout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #141916;
+      border: 1px solid #262f2a;
+      border-radius: 12px;
+      padding: 8px 12px 8px 8px;
+      user-select: none;
+    }
+
+    .locker-embed-wrapper {
+      position: relative;
+      flex: 1;
+      height: 162px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* រំកិលលាក់ក្បាល HUMAN VERIFICATION និង COMPLETE 1 OFFER TO CONTINUE (-152px) */
+    .locker-iframe {
+      width: 100%;
+      height: 420px;
+      margin-top: -152px;
+      border: none;
+      display: block;
+      overflow: hidden;
+      pointer-events: auto;
+    }
+
+    /* ជួរលេខ Robux + សញ្ញាព្រួញចង្អុលទៅកាន់ប៊ូតុង Offers (ចុចមិនទៅណាឡើយ) */
+    .points-side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .offer-points-row {
+      height: 67px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    /* សញ្ញាព្រួញពណ៌បៃតងចង្អុលទៅឆ្វេង (ទៅរកប៊ូតុង Offers) */
+    .arrow-to-offer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #00e65b;
+      filter: drop-shadow(0 0 6px rgba(0, 230, 91, 0.5));
+      animation: pointLeft 1s ease-in-out infinite;
+    }
+
+    @keyframes pointLeft {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(-5px);
+      }
+    }
+
+    .offer-points-badge {
+      background-color: #07100b;
+      border: 1.5px solid #00e65b;
+      color: #00e65b;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 8px 13px;
+      border-radius: 999px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+      cursor: default;
+      user-select: none;
+    }
+
+    /* Footer */
+    .footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: #6d7771;
+    }
+
+    /* Responsive Mobile */
+    @media (max-width: 680px) {
+      .main-card {
+        flex-direction: column;
+      }
+      .left-panel {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #1e2521;
+        padding: 24px 16px;
+        gap: 16px;
+      }
+      .right-panel {
+        width: 100%;
+        padding: 24px 16px;
+      }
+      .title-main {
+        font-size: 26px;
+      }
+      .locker-row-layout {
+        gap: 6px;
+        padding: 6px 8px 6px 6px;
+      }
+      .locker-embed-wrapper {
+        height: 170px;
+      }
+      .locker-iframe {
+        margin-top: -156px;
+        height: 440px;
+      }
+      .offer-points-badge {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      .arrow-to-offer svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    
+    <!-- Top Header -->
+    <div class="header">
+      <div class="brand">
+        <div class="brand-icon">R</div>
+        <div class="brand-text">Robux<span>Deals</span></div>
+      </div>
+
+      <div class="secure-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Secure connection
+      </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="main-card">
+      
+      <!-- Left Striped Panel -->
+      <div class="left-panel">
+        <div class="visual-center">
+          
+          <!-- Visual 1: Glowing R Icon -->
+          <div class="glow-circle-outer" id="visualStep1">
+            <div class="glow-circle-inner">
+              <div class="r-emblem">R</div>
+            </div>
+          </div>
+
+          <!-- Visual 2: Percentage Ring (0% - 100%) -->
+          <div class="progress-ring-box" id="visualStep2">
+            <svg class="progress-ring-svg">
+              <circle class="progress-ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-ring-fill" id="ringFill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="progress-percent-text" id="percentText">0%</div>
+          </div>
+
+          <!-- Visual 3: Green Checkmark -->
+          <div class="glow-circle-outer check-emblem-box" id="visualStep3">
+            <div class="glow-circle-inner">
+              <div class="check-circle">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Step Counter & Bar -->
+        <div class="step-progress-area">
+          <div class="step-label">Step <span id="stepNum">1</span> of 3</div>
+          <div class="step-bar-bg">
+            <div class="step-bar-fill" id="stepBarFill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Content Panel -->
+      <div class="right-panel">
+        
+        <!-- ================= STEP 1 ================= -->
+        <div class="step-view active" id="step1View">
+          <div class="reward-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            100,000 Robux Reward
+          </div>
+
+          <h1 class="title-main">Claim your <span>100,000 Robux</span></h1>
+          <p class="subtitle">Enter your username to connect to the rewards network.</p>
+
+          <div class="input-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <input 
+              type="text" 
+              id="usernameInput" 
+              class="username-input" 
+              placeholder="Enter your username"
+              autocomplete="off"
+            />
+          </div>
+
+          <button class="connect-btn" onclick="startConnection()">
+            Connect <span>&rarr;</span>
+          </button>
+        </div>
+
+        <!-- ================= STEP 2 ================= -->
+        <div class="step-view" id="step2View">
+          <h2 class="step3-title">Connecting to network</h2>
+          <p class="subtitle" id="connectingStatus">Initializing...</p>
+
+          <div class="checklist">
+            <div class="check-item" id="checkItem1">
+              <div class="check-icon-circle" id="checkIcon1"></div>
+              <span>Verifying username</span>
+            </div>
+
+            <div class="check-item" id="checkItem2">
+              <div class="check-icon-circle" id="checkIcon2"></div>
+              <span>Locating reward pool</span>
+            </div>
+
+            <div class="check-item" id="checkItem3">
+              <div class="check-icon-circle" id="checkIcon3"></div>
+              <span>Reserving your points</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STEP 3 (OFFERS LEFT + ARROWS & NUMBERS RIGHT) ================= -->
+        <div class="step-view" id="step3View">
+          <h2 class="step3-title">Verification Required</h2>
+          <p class="step3-desc">
+            Nice, <span class="highlight-user" id="displayUsername">Player</span>! You're almost done with adding <strong>100,000 Robux!</strong> Once the verification is complete, your Robux will be added to your account.
+          </p>
+
+          <div class="reward-banner">
+            <span class="reward-banner-label">YOUR REWARD</span>
+            <div class="reward-banner-amount">100,000 <span>Robux</span></div>
+          </div>
+
+          <div class="verify-note">
+            <span>Verification step confirms you are human.</span>
+            <span class="select-instruction">Please select an offer based on the Robux amount below:</span>
+          </div>
+
+          <!-- ខាងឆ្វេងជាប៊ូតុង Offers (ចុចបាន) និងខាងស្តាំជាសញ្ញាព្រួញចេញពីលេខ Robux ចង្អុលទៅកាន់ Offers -->
+          <div class="locker-row-layout" id="lockerWrapper">
+            <div class="locker-embed-wrapper">
+              <iframe 
+                id="lockerIframe" 
+                class="locker-iframe" 
+                src="about:blank" 
+                scrolling="no"
+                allowtransparency="true"
+              ></iframe>
+            </div>
+
+            <!-- សញ្ញាព្រួញចេញពីលេខ Robux ចង្អុលទៅកាន់ប៊ូតុង Offers -->
+            <div class="points-side-column">
+              
+              <!-- ជួរទី ១៖ ព្រួញ <- +100,000 -->
+              <div class="offer-points-row">
+                <span class="arrow-to-offer">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="20" y1="12" x2="4" y2="12"></line>
+                    <polyline points="10 18 4 12 10 6"></polyline>
+                  </svg>
+                </span>
+                <div class="offer-points-badge">+100,000</div>
+              </div>
+
+              <!-- ជួរទី ២៖ ព្រួញ <- +50,000 -->
+              <div class="offer-points-row">
+                <span class="arrow-to-offer">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="20" y1="12" x2="4" y2="12"></line>
+                    <polyline points="10 18 4 12 10 6"></polyline>
+                  </svg>
+                </span>
+                <div class="offer-points-badge">+50,000</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer Note -->
+    <div class="footer-note">
+      Offers vary by region &amp; device &nbsp;&middot;&nbsp; RobuxDeals is not affiliated with Roblox Corporation
+    </div>
+
+  </div>
+
+  <script>
+    const LOCKER_URL = "https://couponget.club/robloxlocker/";
+
+    const usernameInput = document.getElementById('usernameInput');
+    const stepNum = document.getElementById('stepNum');
+    const stepBarFill = document.getElementById('stepBarFill');
+
+    const visualStep1 = document.getElementById('visualStep1');
+    const visualStep2 = document.getElementById('visualStep2');
+    const visualStep3 = document.getElementById('visualStep3');
+
+    const step1View = document.getElementById('step1View');
+    const step2View = document.getElementById('step2View');
+    const step3View = document.getElementById('step3View');
+
+    const ringFill = document.getElementById('ringFill');
+    const percentText = document.getElementById('percentText');
+    const connectingStatus = document.getElementById('connectingStatus');
+    const displayUsername = document.getElementById('displayUsername');
+    const lockerIframe = document.getElementById('lockerIframe');
+    const lockerWrapper = document.getElementById('lockerWrapper');
+
+    // ចាក់សោមិនឱ្យ Scroll លើប្រអប់ Locker
+    lockerWrapper.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
+    lockerWrapper.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+
+    const checkSvg = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    `;
+
+    usernameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') startConnection();
+    });
+
+    function startConnection() {
+      const username = usernameInput.value.trim();
+      if (!username) {
+        usernameInput.focus();
+        usernameInput.parentElement.style.borderColor = '#ef4444';
+        setTimeout(() => {
+          usernameInput.parentElement.style.borderColor = '#242c27';
+        }, 1000);
+        return;
+      }
+
+      displayUsername.textContent = username;
+
+      // ផ្ទុក Content Locker ទុកជាមុន
+      lockerIframe.src = LOCKER_URL;
+
+      // ប្តូរទៅ Step 2
+      stepNum.textContent = '2';
+      stepBarFill.style.width = '66.66%';
+
+      visualStep1.style.display = 'none';
+      visualStep2.style.display = 'flex';
+
+      step1View.classList.remove('active');
+      step2View.classList.add('active');
+
+      // រត់ភាគរយ 0% -> 100%
+      const duration = 3800;
+      const circumference = 314;
+      const startTime = performance.now();
+
+      function animateProgress(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const percent = Math.floor(progress * 100);
+
+        percentText.textContent = percent + '%';
+        ringFill.style.strokeDashoffset = circumference - (progress * circumference);
+
+        if (percent >= 25) {
+          const item1 = document.getElementById('checkItem1');
+          if (!item1.classList.contains('done')) {
+            item1.classList.add('done');
+            document.getElementById('checkIcon1').innerHTML = checkSvg;
+            connectingStatus.textContent = 'Locating reward pool...';
+          }
+        }
+
+        if (percent >= 60) {
+          const item2 = document.getElementById('checkItem2');
+          if (!item2.classList.contains('done')) {
+            item2.classList.add('done');
+            document.getElementById('checkIcon2').innerHTML = checkSvg;
+            connectingStatus.textContent = 'Finalizing...';
+          }
+        }
+
+        if (percent >= 90) {
+          const item3 = document.getElementById('checkItem3');
+          if (!item3.classList.contains('done')) {
+            item3.classList.add('done');
+            document.getElementById('checkIcon3').innerHTML = checkSvg;
+          }
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animateProgress);
+        } else {
+          setTimeout(showStep3, 400);
+        }
+      }
+
+      requestAnimationFrame(animateProgress);
+    }
+
+    function showStep3() {
+      stepNum.textContent = '3';
+      stepBarFill.style.width = '100%';
+
+      visualStep2.style.display = 'none';
+      visualStep3.style.display = 'flex';
+
+      step2View.classList.remove('active');
+      step3View.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
